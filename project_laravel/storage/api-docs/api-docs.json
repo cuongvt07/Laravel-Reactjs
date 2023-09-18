@@ -1,0 +1,108 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My Project ",
+        "version": "0.1"
+    },
+    "paths": {
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "Đăng nhập, đăng xuất"
+                ],
+                "summary": "Đăng nhập",
+                "operationId": "auth/login",
+                "parameters": [
+                    {
+                        "name": "Language",
+                        "in": "header",
+                        "description": "Ngôn ngữ",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "vi"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "examples": {
+                                "Examples": {
+                                    "summary": "Examples",
+                                    "value": {
+                                        "username": "admin",
+                                        "password": "Admin@123"
+                                    }
+                                },
+                                "Examples1": {
+                                    "summary": "Examples1",
+                                    "value": {
+                                        "username": "admin1",
+                                        "password": "Admin@123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Đăng nhập thành công."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Đăng nhập không thành công."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "bearerAuth",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
